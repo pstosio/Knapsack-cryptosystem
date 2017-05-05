@@ -152,12 +152,24 @@ namespace Knapsack_cryptosystem
             return iso.GetString(result);
         }
 
+        /// <summary>
+        /// http://stackoverflow.com/questions/311165/how-do-you-convert-byte-array-to-hexadecimal-string-and-vice-versa
+        /// </summary>
+        /// <param name="_cipher"></param>
+        /// <returns></returns>
         public string cipherToString(string _cipher)
         {
             int NumberChars = _cipher.Length;
             byte[] bytes = new byte[NumberChars / 2];
-            for (int i = 0; i < NumberChars; i += 2)
-                bytes[i / 2] = Convert.ToByte(_cipher.Substring(i, 2), 16);
+            try
+            {
+                for (int i = 0; i < NumberChars; i += 2)
+                    bytes[i / 2] = Convert.ToByte(_cipher.Substring(i, 2), 16);
+            }
+            catch(Exception e)
+            {
+                
+            }
 
             return iso.GetString(bytes);
         }
